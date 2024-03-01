@@ -12,6 +12,7 @@ import FakeChartIcon from "@/assets/icons/fake-chart.svg";
 import RemoveModalVue from "@/components/modals/Remove.vue";
 import UpdateModalVue from "@/components/modals/Update.vue";
 import TableVue from "@/components/Table.vue";
+import ToastVue from "@/components/Toast.vue";
 
 const searchKeyword = ref("");
 const { tableData, setTableData, setSearchResult } = storeToRefs(useTableDataStore());
@@ -36,6 +37,7 @@ function generateTableData(total = 10) {
   let data = [];
   for (let i = 1; i <= total; i++) {
     data.push({
+      checked: false,
       company: {
         logo: faker.image.avatar(),
         name: faker.company.name(),
@@ -131,4 +133,5 @@ onMounted(() => {
   </div>
   <RemoveModalVue />
   <UpdateModalVue />
+  <ToastVue />
 </template>
