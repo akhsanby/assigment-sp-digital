@@ -5,6 +5,10 @@ export const useTableDataStore = defineStore("tableData", {
     return {
       tableData: [],
       searchResult: [],
+      currentPage: 1,
+      itemsPerPage: 10,
+      currentPageSearchResult: 1,
+      itemsPerPageSearchResult: 10,
     };
   },
   getters: {
@@ -13,6 +17,34 @@ export const useTableDataStore = defineStore("tableData", {
     },
     setSearchResult(state) {
       return (data) => (state.searchResult = data);
+    },
+    totalPages(state) {
+      return Math.ceil(state.tableData.length / state.itemsPerPage);
+    },
+    totalPagesSearchResult(state) {
+      return Math.ceil(state.searchResult.length / state.itemsPerPageSearchResult);
+    },
+    paginatedTableData(state) {
+      const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+      const endIndex = startIndex + state.itemsPerPage;
+      return state.tableData.slice(startIndex, endIndex);
+    },
+    paginatedSearchResult(state) {
+      const startIndex = (state.currentPageSearchResult - 1) * state.itemsPerPageSearchResult;
+      const endIndex = startIndex + state.itemsPerPageSearchResult;
+      return state.searchResult.slice(startIndex, endIndex);
+    },
+  },
+  actions: {
+    goToPage(pageNumber) {
+      if (pageNumber >= 1 && pageNumber <= this.totalPages) {
+        this.currentPage = pageNumber;
+      }
+    },
+    goToPageSearchResult(pageNumber) {
+      if (pageNumber >= 1 && pageNumber <= this.totalPagesSearchResult) {
+        this.currentPageSearchResult = pageNumber;
+      }
     },
   },
   persist: {
