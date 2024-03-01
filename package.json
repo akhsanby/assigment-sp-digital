@@ -15,7 +15,8 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vuejs-paginate-next": "^1.0.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
