@@ -43,7 +43,7 @@ import ExitIcon from "@/assets/icons/exit.svg";
       </li>
     </ul>
     <div class="fixed bottom-[32px]">
-      <hr class="h-px my-8 bg-gray-200 border-0" />
+      <hr class="h-px mb-4 bg-gray-200 border-0" />
       <div class="flex gap-x-3 justify-between">
         <img src="../assets/Avatar.png" alt="avatar" width="40" />
         <p class="flex flex-col">
