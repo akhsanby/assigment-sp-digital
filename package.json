@@ -1,0 +1,28 @@
+{
+  "name": "assigment-sp-digital",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 8000",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@heroicons/vue": "^2.1.1",
+    "pinia": "^2.1.7",
+    "vite-svg-loader": "^5.1.0",
+    "vue": "^3.4.15",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@iconify/vue": "^4.1.1",
+    "@vitejs/plugin-vue": "^5.0.3",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.0.11"
+  }
+}
