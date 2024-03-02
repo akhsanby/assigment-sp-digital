@@ -5,10 +5,7 @@ export const useTableDataStore = defineStore("tableData", {
     return {
       tableData: [],
       searchResult: [],
-      currentPage: 1,
-      itemsPerPage: 10,
-      currentPageSearchResult: 1,
-      itemsPerPageSearchResult: 10,
+      checkedData: 0,
     };
   },
   getters: {
@@ -18,37 +15,58 @@ export const useTableDataStore = defineStore("tableData", {
     setSearchResult(state) {
       return (data) => (state.searchResult = data);
     },
-    totalPages(state) {
-      return Math.ceil(state.tableData.length / state.itemsPerPage);
-    },
-    totalPagesSearchResult(state) {
-      return Math.ceil(state.searchResult.length / state.itemsPerPageSearchResult);
-    },
-    paginatedTableData(state) {
-      const startIndex = (state.currentPage - 1) * state.itemsPerPage;
-      const endIndex = startIndex + state.itemsPerPage;
-      return state.tableData.slice(startIndex, endIndex);
-    },
-    paginatedSearchResult(state) {
-      const startIndex = (state.currentPageSearchResult - 1) * state.itemsPerPageSearchResult;
-      const endIndex = startIndex + state.itemsPerPageSearchResult;
-      return state.searchResult.slice(startIndex, endIndex);
-    },
   },
   actions: {
-    goToPage(pageNumber) {
-      if (pageNumber >= 1 && pageNumber <= this.totalPages) {
-        this.currentPage = pageNumber;
-      }
-    },
-    goToPageSearchResult(pageNumber) {
-      if (pageNumber >= 1 && pageNumber <= this.totalPagesSearchResult) {
-        this.currentPageSearchResult = pageNumber;
+    countCheckedData() {
+      if (this.searchResult.length > 0) {
+        this.checkedData = this.searchResult.filter((item) => item.checked).reduce((total) => total + 1, 0);
+      } else {
+        this.checkedData = this.tableData.filter((item) => item.checked).reduce((total) => total + 1, 0);
       }
     },
   },
   persist: {
     storage: sessionStorage,
+  },
+});
+
+export const usePaginationStore = defineStore("pagination", {
+  state: () => {
+    return {
+      initialPage: 1,
+      itemsPerPage: 10,
+      tableDataStore: useTableDataStore(),
+    };
+  },
+  getters: {
+    currentPage(state) {
+      return state.initialPage;
+    },
+    totalPages(state) {
+      if (state.tableDataStore.searchResult.length > 0) {
+        return Math.ceil(state.tableDataStore.searchResult.length / state.itemsPerPage);
+      } else {
+        return Math.ceil(state.tableDataStore.tableData.length / state.itemsPerPage);
+      }
+    },
+    paginatedTableData(state) {
+      if (state.tableDataStore.searchResult.length > 0) {
+        const startIndex = (state.initialPage - 1) * state.itemsPerPage;
+        const endIndex = startIndex + state.itemsPerPage;
+        return state.tableDataStore.searchResult.slice(startIndex, endIndex);
+      } else {
+        const startIndex = (state.initialPage - 1) * state.itemsPerPage;
+        const endIndex = startIndex + state.itemsPerPage;
+        return state.tableDataStore.tableData.slice(startIndex, endIndex);
+      }
+    },
+  },
+  actions: {
+    goToPage(pageNumber) {
+      if (pageNumber >= 1 && pageNumber <= this.totalPages) {
+        this.initialPage = pageNumber;
+      }
+    },
   },
 });
 
