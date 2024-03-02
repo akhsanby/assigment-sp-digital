@@ -10,39 +10,39 @@ import ExitIcon from "@/assets/icons/exit.svg";
 </script>
 
 <template>
-  <div class="absolute top-0 w-[280px] text-white capitalize px-[1rem]">
-    <p class="text-[28px] font-bold my-[24px]">visa indonesia</p>
-    <ul class="space-y-2">
-      <li class="p-2 bg-[#344054] rounded-md flex gap-x-2 cursor-pointer">
+  <div class="absolute top-0 sm:w-[75px] lg:w-[280px] text-white capitalize px-[1rem]">
+    <p class="text-[28px] font-bold my-[24px] lg:block hidden">visa indonesia</p>
+    <ul class="space-y-2 mt-[4.5rem] sm:mt-[6rem] lg:mt-0 hidden sm:flex-col sm:flex">
+      <li class="p-2 bg-[#344054] rounded-md flex items-center gap-x-2 cursor-pointer">
         <HomeIcon />
-        <span>dashboard</span>
+        <span class="block sm:hidden lg:block">dashboard</span>
       </li>
       <li class="p-2 rounded-md flex gap-x-2 cursor-pointer">
         <LayerIcon />
-        <span>service</span>
+        <span class="hidden lg:block">service</span>
       </li>
       <li class="p-2 rounded-md flex gap-x-2 cursor-pointer">
         <BookIcon />
-        <span>order</span>
+        <span class="hidden lg:block">order</span>
       </li>
       <li class="p-2 rounded-md flex gap-x-2 cursor-pointer">
         <PeopleIcon />
-        <span>customer</span>
+        <span class="hidden lg:block">customer</span>
       </li>
       <li class="p-2 rounded-md flex gap-x-2 cursor-pointer">
         <BriefCaseIcon />
-        <span>customer identity</span>
+        <span class="hidden lg:block">customer identity</span>
       </li>
       <li class="p-2 rounded-md flex gap-x-2 cursor-pointer">
         <TagIcon />
-        <span>promo code</span>
+        <span class="hidden lg:block">promo code</span>
       </li>
       <li class="p-2 rounded-md flex gap-x-2 cursor-pointer">
         <UserIcon />
-        <span>admin user</span>
+        <span class="hidden lg:block">admin user</span>
       </li>
     </ul>
-    <div class="fixed bottom-[32px]">
+    <div class="fixed bottom-[32px] hidden lg:block">
       <hr class="h-px mb-4 bg-gray-200 border-0" />
       <div class="flex gap-x-3 justify-between">
         <img src="../assets/Avatar.png" alt="avatar" width="40" />
