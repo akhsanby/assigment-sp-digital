@@ -50,7 +50,7 @@ function checkOneCheckbox(e, index) {
 </script>
 
 <template>
-  <div class="relative overflow-x-auto border border-gray-200 rounded-lg shadow">
+  <div class="relative overflow-x-auto border border-gray-200 rounded-lg shadow max-w-full">
     <table class="w-full text-left">
       <thead class="bg-gray-50">
         <tr class="text-[12px] text-gray-500">
@@ -67,10 +67,10 @@ function checkOneCheckbox(e, index) {
               <Icon icon="uil:arrow-up" width="1.5rem" v-if="sortAsc === true" />
             </span>
           </th>
-          <th scope="col" class="px-6 py-3">License use</th>
+          <th scope="col" class="px-6 py-3 text-nowrap hidden lg:table-cell">License use</th>
           <th scope="col" class="px-6 py-3">Status</th>
-          <th scope="col" class="px-6 py-3">Users</th>
-          <th scope="col" class="px-6 py-3">About</th>
+          <th scope="col" class="px-6 py-3 hidden md:table-cell">Users</th>
+          <th scope="col" class="px-6 py-3 hidden lg:table-cell">About</th>
           <th scope="col" class="px-6 py-3 text-transparent select-none">option</th>
         </tr>
       </thead>
@@ -91,7 +91,7 @@ function checkOneCheckbox(e, index) {
               </p>
             </div>
           </td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-4 hidden lg:table-cell">
             <div class="w-full bg-[#f2f4f7] rounded-full h-2.5">
               <div class="bg-[#344054] h-2.5 rounded-full" :style="{ width: `${table.licenseUse}` }"></div>
             </div>
@@ -100,7 +100,7 @@ function checkOneCheckbox(e, index) {
             <span v-if="table.status === 'Customer'" class="bg-[#e6f8ef] text-green-800 text-xs font-medium px-[8px] py-[4px] rounded-full">Customer</span>
             <span v-if="table.status === 'Churned'" class="bg-[#eceff3] text-green-800 text-xs font-medium px-[8px] py-[4px] rounded-full">Churned</span>
           </td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-4 hidden md:table-cell">
             <div class="flex items-center" v-if="table.users.length > 5">
               <img :src="user" alt="Avatar" v-for="user in table.users.slice(0, 5)" class="w-[24px] rounded-full -ms-2 border-2 border-white" />
               <div class="w-[24px] bg-white rounded-full -ms-2 border-2 border-white">+{{ table.users.length - 5 }}</div>
@@ -109,7 +109,7 @@ function checkOneCheckbox(e, index) {
               <img :src="user" alt="Avatar" v-for="user in table.users" class="w-[24px] rounded-full -ms-2 border-2 border-white" />
             </div>
           </td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-4 hidden lg:table-cell">
             <div class="flex items-center justify-between">
               <p class="flex flex-col">
                 <span class="text-[14px] text-gray-900">{{ table.about.main }}</span>
