@@ -8,6 +8,7 @@ import Dots3Icon from "@/assets/icons/3-dots.svg";
 import Book2Icon from "@/assets/icons/book-2.svg";
 import MessageIcon from "@/assets/icons/message.svg";
 import FakeChartIcon from "@/assets/icons/fake-chart.svg";
+import ExitIcon from "@/assets/icons/exit.svg";
 
 import RemoveModalVue from "@/components/modals/Remove.vue";
 import UpdateModalVue from "@/components/modals/Update.vue";
@@ -77,45 +78,66 @@ function handleSearch() {
   setSearchResult.value(result);
 }
 
+function showNavbarMenu() {
+  document.getElementById("menu-navbar").classList.remove("hidden");
+  document.getElementById("menu-navbar").classList.add("block");
+}
+
 onMounted(() => {
   generateTableData(100);
 });
 </script>
 
 <template>
-  <div class="bg-white w-[calc(100%-280px)] rounded-tl-3xl absolute left-[280px] top-[15px] p-[30px]">
+  <div class="lg:hidden flex items-center justify-between mx-[20px]">
+    <div class="flex items-center gap-3">
+      <span @click="showNavbarMenu" class="quill--hamburger sm:hidden"></span>
+      <p class="text-[28px] font-bold my-[24px] capitalize text-white">visa indonesia</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="flex gap-x-3 justify-between">
+        <img src="../assets/Avatar.png" alt="avatar" width="40" />
+        <p class="sm:flex flex-col text-white hidden">
+          <span class="font-semibold text-[14px]">Administrator</span>
+          <span class="text-[14px]">admin@spdigital.com</span>
+        </p>
+      </div>
+      <ExitIcon />
+    </div>
+  </div>
+  <div class="bg-white sm:w-[calc(100%-70px)] lg:w-[calc(100%-280px)] rounded-tl-3xl absolute sm:left-[70px] lg:left-[280px] top-[90px] lg:top-[15px] p-[30px]">
     <p class="font-bold text-[30px]">Welcome back, Administrator</p>
     <p>Track, manage and forecast your platform information here.</p>
-    <div class="grid grid-cols-3 gap-x-6 h-[170px] mt-[28px]">
-      <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:h-[9rem] lg:h-[10rem] mt-[28px] sm:mb-[5rem] lg:mb-0">
+      <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
         <div class="flex justify-between items-center">
           <p class="text-[1rem] font-medium">Revenue in Percentage</p>
-          <Dots3Icon />
+          <Dots3Icon class="sm:hidden lg:block" />
         </div>
         <div class="flex justify-between">
           <div class="flex items-end text-gray-500">
             <p class="flex items-center">
               <Icon icon="uil:arrow-up" width="1.5rem" class="text-green-400" />
-              <span class="text-green-400 mx-1">40%</span>
-              <span>vs last month</span>
+              <span class="block text-green-400 mx-1">40%</span>
+              <span class="block">vs last month</span>
             </p>
           </div>
-          <FakeChartIcon />
+          <FakeChartIcon class="sm:hidden lg:block" />
         </div>
       </div>
-      <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
+      <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
         <div class="flex justify-between items-center">
           <p class="text-[1rem] font-medium">Total Order</p>
           <Book2Icon />
         </div>
-        <p class="font-semibold text-[36px]">400 Orders</p>
+        <p class="font-semibold lg:text-[2rem] md:text-[1.5rem]">400 Orders</p>
       </div>
-      <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
+      <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
         <div class="flex justify-between items-center">
           <p class="text-[1rem] font-medium">Pending Customer</p>
           <MessageIcon />
         </div>
-        <p class="font-semibold text-[36px]">20 Customer</p>
+        <p class="font-semibold lg:text-[2rem] md:text-[1.5rem]">20 Customer</p>
       </div>
     </div>
     <div class="flex justify-between">
