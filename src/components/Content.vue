@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { faker } from "@faker-js/faker";
 import _ from "lodash";
+import uuid from "@/utils/uuid";
 import { useTableDataStore } from "@/stores";
 import { storeToRefs } from "pinia";
 import Dots3Icon from "@/assets/icons/3-dots.svg";
@@ -38,6 +39,7 @@ function generateTableData(total = 10) {
   let data = [];
   for (let i = 1; i <= total; i++) {
     data.push({
+      id: uuid(),
       checked: false,
       company: {
         logo: faker.image.avatar(),
