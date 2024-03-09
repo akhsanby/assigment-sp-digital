@@ -119,10 +119,10 @@ function checkOneCheckbox(e, index) {
           </td>
           <td>
             <div class="flex items-center gap-3">
-              <button @click="toggleRemove">
+              <button @click="() => toggleRemove(table)">
                 <TrashIcon />
               </button>
-              <button @click="toggleUpdate">
+              <button @click="() => toggleUpdate(table)">
                 <PencilIcon />
               </button>
             </div>
