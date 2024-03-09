@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import _ from "lodash";
 
 export const useTableDataStore = defineStore("tableData", {
   state: () => {
@@ -75,6 +76,9 @@ export const useModalStore = defineStore("modal", {
     return {
       showRemove: false,
       showUpdate: false,
+      tempRemove: undefined,
+      tempUpdate: undefined,
+      tableDataStore: useTableDataStore(),
     };
   },
   getters: {
@@ -85,6 +89,8 @@ export const useModalStore = defineStore("modal", {
         document.querySelector("#remove-modal").classList.remove("fixed");
         document.querySelector("#remove-modal").classList.remove("inset-0");
         document.querySelector("#remove-modal").classList.remove("z-40");
+
+        state.tempRemove = undefined;
       };
     },
     closeUpdate(state) {
@@ -94,6 +100,8 @@ export const useModalStore = defineStore("modal", {
         document.querySelector("#update-modal").classList.remove("fixed");
         document.querySelector("#update-modal").classList.remove("inset-0");
         document.querySelector("#update-modal").classList.remove("z-40");
+
+        state.tempUpdate = undefined;
       };
     },
     toggleRemove(state) {
@@ -103,6 +111,13 @@ export const useModalStore = defineStore("modal", {
         document.querySelector("#remove-modal").classList.toggle("fixed");
         document.querySelector("#remove-modal").classList.toggle("inset-0");
         document.querySelector("#remove-modal").classList.toggle("z-40");
+
+        // if modal delete is show
+        if (state.showRemove) {
+          state.tempRemove = data;
+        } else {
+          state.tempRemove = undefined;
+        }
       };
     },
     toggleUpdate(state) {
@@ -112,7 +127,23 @@ export const useModalStore = defineStore("modal", {
         document.querySelector("#update-modal").classList.toggle("fixed");
         document.querySelector("#update-modal").classList.toggle("inset-0");
         document.querySelector("#update-modal").classList.toggle("z-40");
+
+        // if modal update is show
+        if (state.showUpdate) {
+          state.tempUpdate = data;
+        } else {
+          state.tempUpdate = undefined;
+        }
       };
+    },
+    confirmRemove(state) {
+      return (id) => {
+        _.remove(state.tableDataStore.tableData, (item) => item.id === id);
+        this.closeRemove();
+      };
+    },
+    confirmUpdate(state) {
+      return (id) => {};
     },
   },
 });
