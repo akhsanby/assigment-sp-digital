@@ -3,7 +3,7 @@ import { useModalStore } from "@/stores";
 import { storeToRefs } from "pinia";
 
 const modalStore = useModalStore();
-const { showRemove, closeRemove } = storeToRefs(modalStore);
+const { showRemove, tempRemove, closeRemove, confirmRemove } = storeToRefs(modalStore);
 </script>
 
 <template>
@@ -24,12 +24,12 @@ const { showRemove, closeRemove } = storeToRefs(modalStore);
           </div>
           <!-- Modal body -->
           <div class="p-4 md:p-5 space-y-4">
-            <p class="text-base leading-relaxed text-gray-500">Remove Company</p>
+            <p class="text-base leading-relaxed text-gray-500">Remove Company {{ tempRemove.company.name }}</p>
           </div>
           <!-- Modal footer -->
           <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-            <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm</button>
-            <button type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Cancel</button>
+            <button type="button" @click="() => confirmRemove(tempRemove.id)" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm</button>
+            <button type="button" @click="closeRemove" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Cancel</button>
           </div>
         </div>
       </div>
