@@ -18,6 +18,9 @@ import ToastVue from "@/components/Toast.vue";
 
 const searchKeyword = ref("");
 const { tableData, setTableData, setSearchResult } = storeToRefs(useTableDataStore());
+const totalOrder = ref(tableData.value.length);
+
+const pendingCustomer = ref(_.filter(tableData.value, { status: "Churned" }).length);
 
 function generateAvatar() {
   let total = faker.number.int({ min: 3, max: 10 });
@@ -132,14 +135,14 @@ onMounted(() => {
           <p class="text-[1rem] font-medium">Total Order</p>
           <Book2Icon />
         </div>
-        <p class="font-semibold lg:text-[2rem] md:text-[1.5rem]">400 Orders</p>
+        <p class="font-semibold lg:text-[2rem] md:text-[1.5rem]">{{ totalOrder }} Orders</p>
       </div>
       <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
         <div class="flex justify-between items-center">
           <p class="text-[1rem] font-medium">Pending Customer</p>
           <MessageIcon />
         </div>
-        <p class="font-semibold lg:text-[2rem] md:text-[1.5rem]">20 Customer</p>
+        <p class="font-semibold lg:text-[2rem] md:text-[1.5rem]">{{ pendingCustomer }} Customer</p>
       </div>
     </div>
     <div class="flex justify-between">
