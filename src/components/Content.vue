@@ -17,10 +17,7 @@ import TableVue from "@/components/Table.vue";
 import ToastVue from "@/components/Toast.vue";
 
 const searchKeyword = ref("");
-const { tableData, setTableData, setSearchResult } = storeToRefs(useTableDataStore());
-const totalOrder = ref(tableData.value.length);
-
-const pendingCustomer = ref(_.filter(tableData.value, { status: "Churned" }).length);
+const { tableData, setTableData, setSearchResult, totalOrder, pendingCustomer } = storeToRefs(useTableDataStore());
 
 function generateAvatar() {
   let total = faker.number.int({ min: 3, max: 10 });

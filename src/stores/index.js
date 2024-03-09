@@ -16,6 +16,12 @@ export const useTableDataStore = defineStore("tableData", {
     setSearchResult(state) {
       return (data) => (state.searchResult = data);
     },
+    totalOrder(state) {
+      return state.tableData.length;
+    },
+    pendingCustomer(state) {
+      return _.filter(state.tableData, { status: "Churned" }).length;
+    },
   },
   actions: {
     countCheckedData() {
